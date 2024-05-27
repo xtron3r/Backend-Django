@@ -14,5 +14,14 @@ class Contacto(models.Model):
 
 class Medico(models.Model):
     nombrem = models.CharField(max_length=100)
+    rut = models.CharField(max_length=9)
     especialidad = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.nombrem} - {self.especialidad}"
+    
+class Paciente(models.Model):
+    nombreCompleto = models.CharField(max_length=80)
+    rut= models.CharField(max_length=11)
+
     
