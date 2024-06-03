@@ -12,9 +12,9 @@ class MedicoViewSet(viewsets.ModelViewSet):
     serializer_class = MedicoSerializer
 
 class PacienteViewSet(viewsets.ModelViewSet):
-    queryset = Medico.objects.all()
+    queryset = Paciente.objects.all()
     serializer_class = PacienteSerializer
 
 class HorasViewSet(viewsets.ModelViewSet):
-    queryset = Paciente.objects.all()
-    serializer_class = PacienteSerializer
+    queryset = Horas.objects.all()
+    serializer_class = HorassSerializer
