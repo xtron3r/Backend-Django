@@ -1,10 +1,11 @@
 from rest_framework import viewsets
 from .models import Contacto,Medico,Paciente,Horas
-from .serializers import ContactoSerializer, MedicoSerializer,PacienteSerializer,HorassSerializer
+from django.contrib.auth.models import User
+from .serializers import ContactoSerializer, MedicoSerializer,PacienteSerializer,HorasSerializer,UserSerializer
 
 # Create your views here.
 class ContactoViewSet(viewsets.ModelViewSet):
-    queryset = Contacto.objects.all()
+    queryset = Contacto.objects.all() 
     serializer_class = ContactoSerializer
 
 class MedicoViewSet(viewsets.ModelViewSet):
@@ -17,4 +18,8 @@ class PacienteViewSet(viewsets.ModelViewSet):
 
 class HorasViewSet(viewsets.ModelViewSet):
     queryset = Horas.objects.all()
-    serializer_class = HorassSerializer
+    serializer_class = HorasSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

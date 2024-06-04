@@ -17,7 +17,7 @@ class PacienteSerializer(serializers.ModelSerializer):
         model = Paciente
         fields ="__all__"
 
-class HorassSerializer(serializers.ModelSerializer):
+class HorasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Horas
         fields ="__all__"

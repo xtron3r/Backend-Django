@@ -10,7 +10,7 @@ class Contacto(models.Model):
     mensaje = models.CharField(max_length=300)
 
     def __str__(self):
-        return f"{self.nombrec} - {self.motivo}"
+        return f"NOMBRE COMPLETO: {self.nombrec} | MOTIVO: {self.motivo} | EMAIL: {self.email} | TELEFONO: {self.telefono} | MENSAJE: {self.mensaje}"
 
 class Medico(models.Model):
     nombrem = models.CharField(max_length=100)
@@ -18,27 +18,29 @@ class Medico(models.Model):
     especialidad = models.CharField(max_length=100)
 
     def __str__(self):
-        return f" {self.rut} - {self.nombrem} - {self.especialidad}"
+        return f"NOMBRE MEDICO: {self.nombrem} | RUT: {self.rut} | ESPECIALIDAD: {self.especialidad}"
     
 class Paciente(models.Model):
+    PREVIS = [
+        ('FONASA','Fonasa'),
+        ('ISAPRE','Isapre'),
+        ('PARTICULAR','Particular'),
+    ]
     nombreCompleto = models.CharField(max_length=80)
     rut= models.CharField(max_length=11, primary_key=True, unique=True )
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
-    especialidad = models.CharField(max_length=100)
-    prevision = models.CharField(max_length=60)
+    prevision = models.CharField(max_length=20, choices=PREVIS)
 
     def __str__(self):
-        return f"{self.nombreCompleto} - {self.rut} - {self.especialidad} - {self.medico} - {self.prevision} "
+        return f"NOMBRE PACIENTE: {self.nombreCompleto} | RUT: {self.rut} | PREVISION: {self.prevision} "
 class Horas(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
-    prevision_paciente = models.CharField(max_length=60)
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
-    especialidad = models.CharField(max_length=50)
     fecha = models.DateField()
     hora = models.TimeField() 
 
     def __str__(self):
-        return f"{self.paciente} - {self.prevision_paciente} - {self.especialidad} - {self.medico} - {self.fecha} - {self.hora} "
+        return f"{self.paciente} | {self.medico} | FECHA AGENDADA: {self.fecha} / {self.hora} HRS "
     
 
 
