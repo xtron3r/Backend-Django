@@ -35,11 +35,13 @@ class Medico(models.Model):
         return f"NOMBRE MEDICO: {self.nombrem} | RUT: {self.rut_medico} | ESPECIALIDAD: {self.especialidad}"
     
 class Reserva(models.Model):
-    id_reserva = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id_reserva = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) # DA UN ID ALEATORIO
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE)
     fecha = models.DateField()
     hora = models.TimeField()
 
     def __str__(self):
-        return f"ID RESERVA: {self.id_reserva} | NOMBRE PACIENTE: {self.paciente.nombrepa} | RUT PACIENTE: {self.paciente.rut_paciente} | NOMBRE MEDICO: {self.medico.nombrem} | ESPECIALIDAD: {self.medico.especialidad} | FECHA Y HORA: {self.fecha} {self.hora}"
+        return f"ID RESERVA: {self.id_reserva} | PACIENTE: {self.paciente.nombrepa} | RUT PACIENTE: {self.paciente.rut_paciente} | PREVISION: {self.paciente.prevision} | MEDICO: {self.medico.nombrem} | RUT MEDICO: {self.medico.rut_medico} | ESPECIALIDAD MEDICO: {self.medico.especialidad} | FECHA Y HORA: {self.fecha} {self.hora}"
+
+

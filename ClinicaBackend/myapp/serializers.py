@@ -18,11 +18,6 @@ class PacienteSerializer(serializers.ModelSerializer):
         fields ="__all__"
 
 class ReservaSerializer(serializers.ModelSerializer):
-    paciente_nombre = serializers.SerializerMethodField()
-
     class Meta:
         model = Reserva
-        fields = ['id_reserva', 'fecha', 'hora', 'paciente', 'paciente_nombre', 'medico']
-
-    def get_paciente_nombre(self, obj):
-        return f"{obj.paciente.nombrepa} ({obj.paciente.rut_paciente})"
+        fields = "__all__"
