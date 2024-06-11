@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User 
-from .models import Contacto,Medico,Paciente,Horas
+from .models import Contacto,Medico,Paciente,Reserva
 
 class ContactoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,12 +17,12 @@ class PacienteSerializer(serializers.ModelSerializer):
         model = Paciente
         fields ="__all__"
 
-class HorasSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Horas
-        fields ="__all__"
+class ReservaSerializer(serializers.ModelSerializer):
+    paciente_nombre = serializers.SerializerMethodField()
 
-class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = "__all__"
+        model = Reserva
+        fields = ['id_reserva', 'fecha', 'hora', 'paciente', 'paciente_nombre', 'medico']
+
+    def get_paciente_nombre(self, obj):
+        return f"{obj.paciente.nombrepa} ({obj.paciente.rut_paciente})"
